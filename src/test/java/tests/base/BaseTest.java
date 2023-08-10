@@ -1,12 +1,32 @@
 package tests.base;
 
-import common.CommonAction;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.WebDriver;
-import pages.base.BasePage;
-import pages.realthome.RealtHomePage;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
-public class BaseTest {
-    protected WebDriver driver = CommonAction.createDriver();
-    protected BasePage basePage = new BasePage(driver);
-    protected RealtHomePage realtHomePage = new RealtHomePage(driver);
+import java.util.concurrent.TimeUnit;
+
+abstract public class BaseTest {
+    private static WebDriver driver;
+    @Before
+    public void setUp(){
+        WebDriverManager.chromedriver().setup();
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.addArguments("--headless");
+        driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(15,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        BasePage.setDriver(driver);
+    }
+
+    @After
+    public void tearDown(){
+        driver.close();
+        driver.quit();
+    }
 }
