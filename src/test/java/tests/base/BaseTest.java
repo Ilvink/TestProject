@@ -6,12 +6,14 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import java.util.concurrent.TimeUnit;
 
 abstract public class BaseTest {
     private static WebDriver driver;
-    @Before
+    @BeforeSuite
     public void setUp(){
         WebDriverManager.chromedriver().setup();
 //        ChromeOptions chromeOptions = new ChromeOptions();
@@ -24,7 +26,7 @@ abstract public class BaseTest {
         BasePage.setDriver(driver);
     }
 
-    @After
+    @AfterSuite
     public void tearDown(){
         driver.close();
         driver.quit();
