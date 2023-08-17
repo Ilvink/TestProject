@@ -4,7 +4,7 @@
 
     <test verbose="2" preserve-order="true" name="C:/Users/Public/AutoTestsJava/TestProject">
         <classes>
-            <class name="tests.search.SearchApartTest">
+            <class name="helpDesk.HelpDeskTest">
             </class>
         </classes>
     </test>

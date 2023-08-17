@@ -37,6 +37,8 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement submitBtm;
 
+    @FindBy(id = "userDropdown")
+    private WebElement goToLogin;
 
     public static MainPage factory(){
         return new MainPage();
@@ -57,5 +59,10 @@ public class MainPage extends BasePage {
         email.sendKeys(emailValue);
         submitBtm.click();
         return this;
+    }
+
+    public LoginPage openLoginPage(){
+        goToLogin.click();
+        return new LoginPage();
     }
 }
